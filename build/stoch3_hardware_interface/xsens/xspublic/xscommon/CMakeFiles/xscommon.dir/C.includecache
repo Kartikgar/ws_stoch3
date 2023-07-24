@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/fwupdate.c
+fwupdate.h
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/fwupdate.h
+string.h
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/string.h
+xbus.h
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbus.h
+
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/fwupdate.h
+xbus.h
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbus.h
+
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbus.c
+xbus.h
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbus.h
+
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbus.h
+stdbool.h
+-
+stdint.h
+-
+stddef.h
+-
+
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbusparser.c
+xbusparser.h
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbusparser.h
+stdio.h
+-
+stdbool.h
+-
+xbus.h
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbus.h
+
+/home/kartik/ws_stoch3/src/stoch3_hardware_interface/xsens/xspublic/xscommon/xbusparser.h
+

@@ -1,0 +1,3 @@
+<launch>
+  <node name="state_machine" pkg="stoch3_state_machine" type="state_machine_node" output="screen" />
+</launch>

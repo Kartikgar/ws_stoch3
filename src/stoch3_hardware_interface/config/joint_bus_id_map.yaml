@@ -1,0 +1,13 @@
+bus_id_map: 
+  fl_abd_joint: 1
+  fl_hip_joint: 1
+  fl_knee_joint: 1
+  fr_abd_joint: 2
+  fr_hip_joint: 2
+  fr_knee_joint: 2
+  bl_abd_joint: 3
+  bl_hip_joint: 3
+  bl_knee_joint: 3
+  br_abd_joint: 4
+  br_hip_joint: 4
+  br_knee_joint: 4

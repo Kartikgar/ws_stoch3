@@ -1,0 +1,29 @@
+# Setting the default motor gain scales
+
+motor_gain_scales: 
+  Kp:
+    fl_abd_joint:  8
+    fl_hip_joint:  8
+    fl_knee_joint: 8
+    fr_abd_joint:  8
+    fr_hip_joint:  8
+    fr_knee_joint: 8
+    bl_abd_joint:  8
+    bl_hip_joint:  8
+    bl_knee_joint: 8
+    br_abd_joint:  8
+    br_hip_joint:  8
+    br_knee_joint: 8
+  Kd:
+    fl_abd_joint:  4
+    fl_hip_joint:  4
+    fl_knee_joint: 4
+    fr_abd_joint:  4
+    fr_hip_joint:  4
+    fr_knee_joint: 4
+    bl_abd_joint:  4
+    bl_hip_joint:  4
+    bl_knee_joint: 4
+    br_abd_joint:  4
+    br_hip_joint:  4
+    br_knee_joint: 4

@@ -1,0 +1,20 @@
+walking_controller:
+  leg_shifts:
+    fl: { x: 0, y: 0, z: 0}
+    fr: { x: 0, y: 0, z: 0}
+    bl: { x: 0, y: 0, z: 0}
+    br: { x: 0, y: 0, z: 0}
+
+sit_controller:
+  leg_shifts:
+    fl: { x: 0, y: 0, z: 0}
+    fr: { x: 0, y: 0, z: 0}
+    bl: { x: 0, y: 0, z: 0}
+    br: { x: 0, y: 0, z: 0}
+
+stand_controller:
+  leg_shifts:
+    fl: { x: 0, y: 0, z: 0}
+    fr: { x: 0, y: 0, z: 0}
+    bl: { x: 0, y: 0, z: 0}
+    br: { x: 0, y: 0, z: 0}

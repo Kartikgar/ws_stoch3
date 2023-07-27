@@ -1,0 +1,79 @@
+<launch>
+ 
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="on_rack" default="false"/>
+  <arg name="slope_1_deg" default="false"/>
+  <arg name="slope_2_deg" default="false"/>
+  <arg name="slope_5_deg" default="false"/>
+  <arg name="test_weight" default="false"/>
+  <arg name="robot_stand" default="false"/>
+  <arg name="world_1_deg" default="$(find stoch3_gazebo)/world/slope_1deg.world"/>
+  <arg name="world_2_deg" default="$(find stoch3_gazebo)/world/slope_2deg.world"/>
+  <arg name="world_5_deg" default="$(find stoch3_gazebo)/world/slope_5deg.world"/>
+  <arg name="world_test_weight" default="$(find stoch3_gazebo)/world/test_weight.world"/>
+  <arg name="world_robot_stand" default="$(find stoch3_gazebo)/world/robot_stand.world"/>
+
+  <!-- We launch the empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg if="$(arg slope_1_deg)" name="world_name" value="$(arg world_1_deg)" />
+    <arg if="$(arg slope_2_deg)" name="world_name" value="$(arg world_2_deg)" />
+    <arg if="$(arg slope_5_deg)" name="world_name" value="$(arg world_5_deg)" />
+    <arg if="$(arg test_weight)" name="world_name" value="$(arg world_test_weight)" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <rosparam file="$(find stoch3_gazebo)/config/gazebo_ros_control.yaml" command="load" />
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param unless="$(arg on_rack)" name="robot_description" textfile="$(find stoch3_description)/urdf/stoch3.urdf" />
+  <param if="$(arg on_rack)" name="robot_description" textfile="$(find stoch3_description)/urdf/stoch3_fixed.urdf" />
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -z 0.6 -model stoch3 -param robot_description"/>
+
+  <group ns="/stoch3" >
+    <rosparam file="$(find stoch3_control)/config/stoch3_controllers.yaml" command="load" />
+    <rosparam file="$(find stoch3_control)/config/sim_leg_shifts.yaml" command="load" />
+
+    <!-- Teleoperation interface -->
+    <!-- <include file="$(find stoch3_teleop)/launch/teleop.launch"/> -->
+    <node name="state_machine_teleop" pkg="stoch3_teleop" type="teleop_launch.sh" output="screen" />
+    
+    <!-- State machine -->
+    <include file="$(find stoch3_state_machine)/launch/state_machine.launch"/>
+    
+    <node name="sit_stand" pkg="stoch3_control" type="sit_stand_posture" output="screen" />
+
+    <!-- Robot state controller -->
+    <node ns="/stoch3" name="controller_spawner_state" 
+       pkg="controller_manager" 
+       type="spawner" 
+       respawn="false" 
+       output="screen" 
+       args="controller/state" 
+   />
+
+    <!-- Robot position controller -->
+    <node ns="/stoch3" name="controller_spawner" 
+       pkg="controller_manager" 
+       type="spawner" 
+       respawn="false" 
+       output="screen" 
+       args="--stopped
+             controller/idle_controller
+             controller/leg_controller
+             controller/body_pose_controller
+             controller/walking_controller"
+    />
+  </group>
+</launch>

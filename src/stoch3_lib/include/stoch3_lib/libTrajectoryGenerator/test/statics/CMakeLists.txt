@@ -1,0 +1,2 @@
+add_executable(test_serial_2r_statics test_serial_2r_statics.cpp)
+add_executable(test_serial_3r_statics test_serial_3r_statics.cpp)

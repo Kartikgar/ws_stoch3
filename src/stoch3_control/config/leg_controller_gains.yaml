@@ -1,0 +1,35 @@
+leg_controller_gains:
+  Kp:
+    FL:
+      x: 0
+      y: 0
+      z: 0
+    FR:
+      x: 0
+      y: 0
+      z: 0
+    BL:
+      x: 0
+      y: 0
+      z: 0
+    BR:
+      x: 0
+      y: 0
+      z: 0
+  Kd:
+    FL:
+      x: 0
+      y: 0
+      z: 0
+    FR:
+      x: 0
+      y: 0
+      z: 0
+    BL:
+      x: 0
+      y: 0
+      z: 0
+    BR:
+      x: 0
+      y: 0
+      z: 0

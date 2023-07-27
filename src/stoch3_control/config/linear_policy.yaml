@@ -1,0 +1,22 @@
+policy:
+
+  body_roll:
+    fl_shift_y: -0.1
+    fr_shift_y: -0.1
+    bl_shift_y: -0.1
+    br_shift_y: -0.1
+    fl_shift_z: 0.1
+    fr_shift_z: -0.1
+    bl_shift_z: 0.1
+    br_shift_z: -0.1
+
+  body_pitch:
+    fl_shift_x: 0.1
+    fr_shift_x: 0.1
+    bl_shift_x: 0.1
+    br_shift_x: 0.1
+    fl_shift_z: -0.1
+    fr_shift_z: -0.1
+    br_shift_z: 0.1
+    bl_shift_z: 0.1
+

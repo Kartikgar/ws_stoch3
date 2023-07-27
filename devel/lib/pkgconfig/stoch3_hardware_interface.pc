@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: stoch3_hardware_interface
+Description: Description of stoch3_hardware_interface
+Version: 0.0.0
+Cflags: -I/home/kartik/ws_stoch3/src/stoch3_hardware_interface/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib 
+Requires: controller_manager roscpp

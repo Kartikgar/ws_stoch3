@@ -1,0 +1,13 @@
+motor_id_map:  
+  fl_abd_joint: 11
+  fl_hip_joint: 12
+  fl_knee_joint: 13
+  fr_abd_joint: 21
+  fr_hip_joint: 22
+  fr_knee_joint: 23
+  bl_abd_joint: 31
+  bl_hip_joint: 32
+  bl_knee_joint: 33
+  br_abd_joint: 41
+  br_hip_joint: 42
+  br_knee_joint: 43

@@ -1,0 +1,39 @@
+<launch>
+
+  <!-- Launch the joint state publisher -->
+  <arg name="joint_state_control_gui" default="false"/>
+
+  <!-- Use the URDF with fixed base -->
+  <arg name="fixed_base" default="false" />
+
+  <include file="$(find stoch3_rviz)/launch/stoch3_rviz.launch" >
+    <arg name="joint_state_control_gui" value="$(arg joint_state_control_gui)" />
+    <arg name="fixed_base" value="$(arg fixed_base)" />
+  </include>
+
+  <!-- Stoch3 TF broadcaster -->
+  <node unless="$(arg fixed_base)"
+    ns="stoch3"
+    name="stoch3_tf_broadcaster"
+    pkg="stoch3_rviz"
+    type="stoch3_tf_broadcaster.py"
+    output="screen"
+  />
+
+  <node if="$(arg fixed_base)"
+    name="tf_broadcaster_base_link"
+    pkg="tf"
+    type="static_transform_publisher"
+    args = "0 0 0 0 0 0 world base_link 1"
+  />
+
+  <!-- Stoch3 Visualizer -->
+  <node
+    ns="stoch3"
+    name="stoch3_visualizer"
+    pkg="stoch3_rviz"
+    type="stoch3_visualizer"
+    output="screen"
+  />
+
+</launch>

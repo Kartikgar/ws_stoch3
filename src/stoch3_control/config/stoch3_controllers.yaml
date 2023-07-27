@@ -1,0 +1,99 @@
+"":
+  controller:
+    state:
+      type: joint_state_controller/JointStateController
+      publish_rate: 100
+
+    motor_state:
+      type: motor_state_controller/MotorStateController
+      publish_rate: 100
+      joints:
+        - fl_abd_joint
+        - fl_hip_joint
+        - fl_knee_joint
+        - fr_abd_joint
+        - fr_hip_joint
+        - fr_knee_joint
+        - bl_abd_joint
+        - bl_hip_joint
+        - bl_knee_joint
+        - br_abd_joint
+        - br_hip_joint
+        - br_knee_joint
+
+
+    imu_sensor_controller:
+      type: imu_sensor_controller/ImuSensorController
+      publish_rate: 50
+
+    leg_controller:
+      type: "leg_controller/QuadrupedLegController"
+      joints:
+        - fl_abd_joint
+        - fl_hip_joint
+        - fl_knee_joint
+        - fr_abd_joint
+        - fr_hip_joint
+        - fr_knee_joint
+        - bl_abd_joint
+        - bl_hip_joint
+        - bl_knee_joint
+        - br_abd_joint
+        - br_hip_joint
+        - br_knee_joint
+
+    body_pose_controller:
+      type: "body_pose_controller/JointGroupPositionController"
+      imu: body_imu
+      joints:
+        - fl_abd_joint
+        - fl_hip_joint
+        - fl_knee_joint
+        - fr_abd_joint
+        - fr_hip_joint
+        - fr_knee_joint
+        - bl_abd_joint
+        - bl_hip_joint
+        - bl_knee_joint
+        - br_abd_joint
+        - br_hip_joint
+        - br_knee_joint
+
+    # Idle controller
+    idle_controller:
+      type: "idle_controller/JointGroupPositionController"
+      joints:
+        - fl_abd_joint
+        - fl_hip_joint
+        - fl_knee_joint
+        - fr_abd_joint
+        - fr_hip_joint
+        - fr_knee_joint
+        - bl_abd_joint
+        - bl_hip_joint
+        - bl_knee_joint
+        - br_abd_joint
+        - br_hip_joint
+        - br_knee_joint
+
+  estimator:
+    foot_state_estimator:
+      type: "foot_state_estimator/FootStateEstimator"
+      priority: 99
+      joints:
+        - fl_abd_joint
+        - fl_hip_joint
+        - fl_knee_joint
+        - fr_abd_joint
+        - fr_hip_joint
+        - fr_knee_joint
+        - bl_abd_joint
+        - bl_hip_joint
+        - bl_knee_joint
+        - br_abd_joint
+        - br_hip_joint
+        - br_knee_joint
+
+    slope_estimator:
+      type: "slope_estimator/SlopeEstimator"
+      priority: 98

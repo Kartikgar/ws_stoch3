@@ -1,0 +1,1 @@
+add_executable(test_kinematics test_kinematics.cpp)

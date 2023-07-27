@@ -1,0 +1,265 @@
+<launch>
+ 
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="on_rack" default="false"/>
+  <arg name="base_frame"  default="base_link"/>
+  <arg name="odom_frame"  default="odom"/>
+  <arg name="scan_topic"  default="d435/scan" />
+  <!-- <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
+  <arg name="pub_map_odom_transform" default="true"/>
+  <arg name="scan_subscriber_queue_size" default="5"/>
+  <arg name="map_size" default="2048"/> --> 
+  
+  <!-- We launch the empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+   <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/empty.world"/> 
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <rosparam file="$(find stoch3_gazebo)/config/gazebo_ros_control.yaml" command="load" />
+
+  <!-- Load the URDF into the ROS Parameter Server 
+  <param unless="$(arg on_rack)" name="robot_description" textfile="$(find stoch3_description)/urdf/stoch3.urdf" />
+  <param if="$(arg on_rack)" name="robot_description" textfile="$(find stoch3_description)/urdf/stoch3_fixed.urdf" />
+-->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find stoch3_description)/urdf/stoch3.urdf.xacro" />
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -z 0.6 -model stoch3 -param robot_description"/>
+
+  <group ns="/stoch3" >
+    <rosparam file="$(find stoch3_control)/config/stoch3_controllers.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/hardware.yaml" command="load" />
+    <rosparam file="$(find stoch3_control)/config/leg_controller_gains.yaml" command="load" />
+
+    <!-- Teleoperation interface -->
+    <!-- <include file="$(find stoch3_teleop)/launch/teleop.launch"/> -->
+    <node name="state_machine_teleop" pkg="stoch3_teleop" type="teleop_launch.sh" output="screen" />
+    
+    <!-- State machine -->
+    <include file="$(find stoch3_state_machine)/launch/state_machine.launch"/>
+    
+    <!-- State estimator -->
+    <node name="state_estimator" pkg="stoch3_control" type="state_estimator" output="screen">
+      <remap from="imu" to="/sensors/imu_1"/>
+      <remap from="leg_state" to="estimator/foot_state_estimator/leg_state" />
+    </node>
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <!-- <param name="tf_prefix" value="/stoch3" /> -->
+    </node>
+
+    <!-- Controller supervisor -->
+    <node name="controller_supervisor" pkg="stoch3_control" type="controller_supervisor" output="screen" />
+    <group ns="controller_supervisor">
+      <rosparam file="$(find stoch3_control)/config/sim_leg_shifts.yaml" command="load" />
+    </group>
+
+    <!-- Robot state controller -->
+    <node ns="/stoch3" name="controller_spawner_state" 
+       pkg="controller_manager" 
+       type="spawner" 
+       respawn="false" 
+       output="screen" 
+       args="controller/state
+             estimator/foot_state_estimator"
+   />
+
+    <!-- Robot position controller -->
+    <node ns="/stoch3" name="controller_spawner" 
+       pkg="controller_manager" 
+       type="spawner" 
+       respawn="false" 
+       output="screen" 
+       args="--stopped
+             controller/idle_controller
+             controller/leg_controller"
+    />
+  </group>
+    <node pkg = "stoch3" type="tf_pub.py" name="turtle_tf_broadcaster"/>
+
+    <node pkg="elevation_mapping_demos" type="tf_to_pose_publisher.py" name="pose_publisher">
+    <param name="from_frame" type="string" value="odom"/>
+    <param name="to_frame" type="string" value="base_link"/>
+  </node>
+
+  <node pkg="elevation_mapping" type="elevation_mapping" name="elevation_mapping" output="screen">
+    <rosparam command="load" file="$(find elevation_mapping_demos)/config/robots/stoch.yaml"/>
+    <rosparam command="load" file="$(find elevation_mapping_demos)/config/postprocessing/postprocessor_pipeline.yaml"/>
+    <!-- <rosparam command="load" file="$(find elevation_mapping)/config/sensor_processors/realsense_d435.yaml"/> -->
+
+  </node>
+
+    <env name="ROSCONSOLE_CONFIG_FILE" value="$(find traversability_estimation)/config/rosconsole.conf"/>
+  <node pkg="traversability_estimation" type="traversability_estimation_node" name="traversability_estimation" output="screen">
+    <rosparam command="load" file="$(find traversability_estimation)/config/robot.yaml"/>
+    <rosparam command="load" file="$(find traversability_estimation)/config/robot_footprint_parameter.yaml"/>
+    <rosparam command="load" file="$(find traversability_estimation)/config/robot_filter_parameter.yaml"/>
+  </node>
+
+    <node pkg="grid_map_visualization" type="grid_map_visualization" name="traversability_map_visualization" output="screen">
+	<rosparam command="load" file="$(find traversability_estimation)/config/visualization/traversability.yaml"/>
+  </node>
+  <!-- Launch Rviz-->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_robot" args="2.0 6.0 0 0 0.0 0 /map /base 100"/> -->
+
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_gazebo)/rviz/turtlebot3_gazebo_model.rviz"/> -->
+  <!-- <arg name="joint_state_control_gui" default="false"/> -->
+
+  <!-- Use the URDF with fixed base -->
+  <!-- <arg name="fixed_base" default="false" />
+
+  <include file="$(find stoch3_rviz)/launch/stoch3_rviz.launch" >
+    <arg name="joint_state_control_gui" value="$(arg joint_state_control_gui)" />
+    <arg name="fixed_base" value="$(arg fixed_base)" />
+  </include> -->
+
+  <!-- Stoch3 TF broadcaster -->
+  <!-- <node unless="$(arg fixed_base)"
+    ns="stoch3"
+    name="stoch3_tf_broadcaster"
+    pkg="stoch3_rviz"
+    type="stoch3_tf_broadcaster.py"
+    output="screen"
+  /> -->
+
+  <!-- <node if="$(arg fixed_base)"
+    name="tf_broadcaster_base_link"
+    pkg="tf"
+    type="static_transform_publisher"
+    args = "0 0 0 0 0 0 world base_link 1"
+  /> -->
+
+  <!-- Stoch3 Visualizer -->
+  <!-- <node
+    ns="stoch3"
+    name="stoch3_visualizer"
+    pkg="stoch3_rviz"
+    type="stoch3_visualizer"
+    output="screen"
+  /> -->
+<!-- </launch> -->
+
+
+<!-- 
+ <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+
+        <remap from="cloud_in" to="/d435/depth/color/points"/>
+        <remap from="scan" to="/d435/scan"/>
+        <rosparam>
+             # Leave disabled to output scan in pointcloud frame
+            transform_tolerance: 0.01
+            min_height: 0.0
+            max_height: 1.0
+
+            angle_min: -1.5708 # -M_PI/2
+            angle_max: 1.5708 # M_PI/2
+            angle_increment: 0.0087 # M_PI/360.0
+            scan_time: 0.3333
+            range_min: 0.45
+            range_max: 4.0
+            use_inf: true
+            inf_epsilon: 1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+
+    </node>
+
+
+ 
+   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <param name="base_frame" value="$(arg base_frame)"/>
+    <param name="odom_frame" value="$(arg odom_frame)"/>
+    <param name="map_update_interval" value="5.0"/>
+    <param name="maxUrange" value="6.0"/>
+    <param name="maxRange" value="8.0"/>
+    <param name="sigma" value="0.05"/>
+    <param name="kernelSize" value="1"/>
+    <param name="lstep" value="0.05"/>
+    <param name="astep" value="0.05"/>
+    <param name="iterations" value="5"/>
+    <param name="lsigma" value="0.075"/>
+    <param name="ogain" value="3.0"/>
+    <param name="lskip" value="0"/>
+    <param name="minimumScore" value="200"/>
+    <param name="srr" value="0.01"/>
+    <param name="srt" value="0.02"/>
+    <param name="str" value="0.01"/>
+    <param name="stt" value="0.02"/>
+    <param name="linearUpdate" value="0.5"/>
+    <param name="angularUpdate" value="0.436"/>
+    <param name="temporalUpdate" value="-1.0"/>
+    <param name="resampleThreshold" value="0.5"/>
+    <param name="particles" value="80"/>
+  
+    <param name="xmin" value="-50.0"/>
+    <param name="ymin" value="-50.0"/>
+    <param name="xmax" value="50.0"/>
+    <param name="ymax" value="50.0"/>   -->
+  <!-- make the starting size small for the benefit of the Android client's memory... -->
+ 
+    <!-- <param name="xmin" value="-1.0"/>
+    <param name="ymin" value="-1.0"/>
+    <param name="xmax" value="1.0"/>
+    <param name="ymax" value="1.0"/> -->
+
+    <!-- <param name="delta" value="0.05"/>
+    <param name="llsamplerange" value="0.01"/>
+    <param name="llsamplestep" value="0.01"/>
+    <param name="lasamplerange" value="0.005"/>
+    <param name="lasamplestep" value="0.005"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>  -->
+
+   <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+    <param name="resolution" value="0.05" />
+    
+    <!--  fixed map frame (set to 'map' if SLAM or localization running!) -->
+     <param name="frame_id" type="string" value="odom" /> 
+    
+    <!-- maximum range to integrate (speedup!) -->
+    <param name="sensor_model/max_range" value="5.0" />
+    
+    <!-- data source to integrate (PointCloud2) -->
+    <remap from="cloud_in" to="/d435/depth/color/points" />
+  </node>  
+   <!-- surface normal calculator-->
+  <!-- <node pkg="grid_map_demos" type="filters_demo" name="grid_map_filter_demo" output="screen"> -->
+    <!-- Input topic -->
+  	<!-- <param name="input_topic" value="/octomap_to_gridmap_demo/grid_map" /> -->
+     	<!-- Output topic -->
+  	<!-- <param name="output_topic" value="filtered_map" /> -->
+  	<!-- Load grid map filter chain configuration -->
+    <!-- <rosparam command="load" file="$(find grid_map_demos)/config/normal_filter.yaml" /> -->
+  <!-- </node> -->
+
+   <!-- <rosparam command="load" file="$(find grid_map_demos)/config/octomap_to_gridmap_demo.yaml" /> -->
+  <!-- Launch the octomap conversion node -->
+  <!-- <node pkg="grid_map_demos" type="octomap_to_gridmap_demo" name="octomap_to_gridmap_demo" output="screen" /> -->
+ 
+  <!-- Launch the grid map visualizer -->
+  <!-- <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen" >
+    <rosparam command="load" file="$(find grid_map_demos)/config/normal_filter_vis.yaml" />
+ </node> -->
+  <!-- Launch Rviz-->
+
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_gazebo)/rviz/turtlebot3_gazebo_model.rviz"/> -->
+
+</launch>
+

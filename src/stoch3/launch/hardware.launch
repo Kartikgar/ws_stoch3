@@ -1,0 +1,79 @@
+<launch>
+  <arg name="use_keyboard"   default="true" /> <!-- Set false if you want to run using the joystick -->
+  <arg name="enable_motors" default="false" />
+
+  <group ns="stoch3" >
+
+    <rosparam file="$(find stoch3_hardware_interface)/config/hardware.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/joint_limits.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/joint_motor_id_map.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/joint_bus_id_map.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/motor_offsets.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/joint_to_motor_map.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/motor_gain_scales.yaml" command="load" />
+    <rosparam file="$(find stoch3_hardware_interface)/config/imu_sensor_controller.yaml" command="load" />
+    <rosparam file="$(find stoch3_control)/config/stoch3_controllers.yaml" command="load" />
+    <rosparam file="$(find stoch3_control)/config/linear_policy.yaml" command="load" />
+    <rosparam file="$(find stoch3_control)/config/leg_shifts.yaml" command="load" />
+    <rosparam file="$(find stoch3_control)/config/leg_controller_gains.yaml" command="load" />
+
+    <!-- Hardware interface -->
+    <node name="stoch3_hardware_interface" pkg="stoch3_hardware_interface" type="stoch3_hardware_interface_node" output="screen" >
+      <param name="enable_motors" type="bool" value="$(arg enable_motors)" />
+    </node>
+
+    <!-- Teleoperation interface -->
+    <include file="$(find stoch3_teleop)/launch/teleop.launch"/>
+
+    <!-- State machine -->
+    <include file="$(find stoch3_state_machine)/launch/state_machine.launch"/>
+
+    <!-- State estimator -->
+    <node name="state_estimator" pkg="stoch3_control" type="state_estimator" output="screen">
+      <remap from="imu" to="body_imu"/>
+      <remap from="leg_state" to="estimator/foot_state_estimator/leg_state" />
+    </node>
+
+    <!-- Controller supervisor -->
+    <node name="controller_supervisor" pkg="stoch3_control" type="controller_supervisor" output="screen" />
+    <group ns="controller_supervisor">
+      <rosparam file="$(find stoch3_control)/config/leg_shifts.yaml" command="load" />
+    </group>
+
+    <!-- Robot state controller -->
+    <node ns="/stoch3" name="controller_spawner_state"
+       pkg="controller_manager"
+       type="spawner"
+       respawn="false"
+       output="screen"
+       args="controller/state
+             controller/motor_state
+             imu_sensor_controller
+             estimator/foot_state_estimator"
+    />
+
+    <!-- Robot position controller -->
+    <node ns="/stoch3" name="controller_spawner"
+       pkg="controller_manager"
+       type="spawner"
+       respawn="false"
+       output="screen"
+       args="--stopped
+             controller/idle_controller
+             controller/leg_controller"
+    />
+  </group>
+
+  <node pkg="rosbag" type="record" name="rosbag_record_diag"
+       args="record
+        /stoch3/joint_states
+        /stoch3/controller/leg_controller/command
+        /stoch3/controller/leg_controller/feedback
+        /stoch3/state
+        /stoch3/body_imu
+        /stoch3/motor_states
+        /stoch3/robot_state
+	      /rosout"
+  />
+
+</launch>

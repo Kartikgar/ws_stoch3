@@ -1,0 +1,14 @@
+motor_offsets:
+  fl_abd_joint: -0.184
+  fl_hip_joint: -1.474
+  fl_knee_joint: 2.873
+  fr_abd_joint: 0.153
+  fr_hip_joint: -1.467
+  fr_knee_joint: 2.851
+  bl_abd_joint: -0.174
+  bl_hip_joint: -1.426
+  bl_knee_joint: 2.873
+  br_abd_joint: 0.220
+  br_hip_joint: -1.433
+  br_knee_joint: 2.854
+

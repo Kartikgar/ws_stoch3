@@ -1,0 +1,11 @@
+<library path="lib/libstoch3_robot_hw_sim">
+
+  <class
+    name="stoch3_gazebo/Stoch3RobotHWSim"
+    type="stoch3_gazebo::Stoch3RobotHWSim"
+    base_class_type="gazebo_ros_control::RobotHWSim">
+    <description>
+      A default robot simulation interface for Stoch3 robot which constructs joint handles from an SDF/URDF.
+    </description>
+  </class>
+</library>

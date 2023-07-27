@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: stoch3_lib
+Description: Description of stoch3_lib
+Version: 0.0.0
+Cflags: -I/home/kartik/ws_stoch3/src/stoch3_lib/include -I/home/kartik/ws_stoch3/src/stoch3_lib/include/stoch3_lib/libTrajectoryGenerator -I/usr/include/eigen3
+Libs: -L${prefix}/lib 
+Requires: 

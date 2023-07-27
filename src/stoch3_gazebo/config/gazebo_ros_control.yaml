@@ -1,0 +1,15 @@
+stoch3:
+  gazebo_ros_control:
+    pid_gains:
+      fl_abd_joint:  {p: 300, i: 0, d: 8}
+      fl_hip_joint:  {p: 300, i: 0, d: 8}
+      fl_knee_joint: {p: 300, i: 0, d: 8}
+      fr_abd_joint:  {p: 300, i: 0, d: 8}
+      fr_hip_joint:  {p: 300, i: 0, d: 8}
+      fr_knee_joint: {p: 300, i: 0, d: 8}
+      bl_abd_joint:  {p: 300, i: 0, d: 8}
+      bl_hip_joint:  {p: 300, i: 0, d: 8}
+      bl_knee_joint: {p: 300, i: 0, d: 8}
+      br_abd_joint:  {p: 300, i: 0, d: 8}
+      br_hip_joint:  {p: 300, i: 0, d: 8}
+      br_knee_joint: {p: 300, i: 0, d: 8}

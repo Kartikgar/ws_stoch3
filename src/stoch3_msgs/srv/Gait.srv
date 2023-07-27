@@ -1,0 +1,6 @@
+float64 step_frequency
+float64 swing_height
+float64 stance_height
+geometry_msgs/Twist max_vel
+---
+bool ok

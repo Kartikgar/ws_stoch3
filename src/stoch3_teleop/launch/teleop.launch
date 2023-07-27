@@ -1,0 +1,24 @@
+<launch>
+  <arg name="mode" default="joy"/>
+
+  <group if="$(eval mode=='joy')">
+    <node name="joy_interface" pkg="stoch3_teleop" type="joy_interface_node" />
+
+    <node name="joy_teleop"    pkg="stoch3_teleop" type="joy_teleop_node" >
+      <remap from="cmd_out" to="controller_supervisor/command"/>
+      <remap from="cmd_in" to="teleop/command" />
+    </node>
+  </group>
+
+  <group if="$(eval mode=='key')">
+     <node 
+      name="joy_teleop" 
+      pkg="stoch3_teleop" 
+      type="key_teleop_node" 
+      output="screen"
+      launch-prefix="xterm -e">  <!-- open in new window -->
+      <remap from="cmd_out" to="controller_supervisor/command"/>
+      <remap from="cmd_in" to="teleop/command" />
+    </node>
+  </group>
+</launch>

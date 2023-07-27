@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: hardware_interface
+Description: Description of hardware_interface
+Version: 0.18.4
+Cflags: -I/home/kartik/ws_stoch3/src/ros_control/hardware_interface/include
+Libs: -L${prefix}/lib 
+Requires: roscpp

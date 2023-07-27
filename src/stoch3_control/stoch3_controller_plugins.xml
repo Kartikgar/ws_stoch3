@@ -1,0 +1,40 @@
+<library path="lib/libleg_controller">
+
+  <class name="leg_controller/QuadrupedLegController" type="leg_controller::QuadrupedLegController" base_class_type="controller_interface::ControllerBase">
+    <description>
+      The QuadrupedLegController is used to set the positions of all foot as commanded by the higher level controller.
+    </description>
+  </class>
+
+</library>
+
+<library path="lib/libidle_controller">
+
+  <class name="idle_controller/JointGroupPositionController" type="idle_controller::JointGroupPositionController" base_class_type="controller_interface::ControllerBase">
+    <description>
+      The JointGroupPositionController is used to set the positions of all the joints in the robot to NaN.
+    </description>
+  </class>
+
+</library>
+
+<library path="lib/libmotor_state_controller">
+
+  <class name="motor_state_controller/MotorStateController" type="motor_state_controller::MotorStateController" base_class_type="controller_interface::ControllerBase">
+    <description>
+      The MotorStateController is used to publish the states of all the motors.
+    </description>
+  </class>
+
+</library>
+
+
+<library path="lib/libfoot_state_estimator">
+
+  <class name="foot_state_estimator/FootStateEstimator" type="foot_state_estimator::FootStateEstimator" base_class_type="controller_interface::ControllerBase">
+    <description>
+      Estimation of the foot state (including foot position, velocity, force, contact state).
+    </description>
+  </class>
+
+</library>

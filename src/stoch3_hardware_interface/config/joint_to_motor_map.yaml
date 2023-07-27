@@ -1,0 +1,20 @@
+# The moteus driver consider CW motion of the motor to be positive
+# In our convention CCW is considered positive. 
+# This configuration maps the directi of motion of the motor
+# to the direction of motion of the joint.
+# We see the joint motion with an axis along the +Y (i.e., pointing to the robots left)
+# Note: +X = Forward, +Y = Left, +Z = Upward
+
+joint_to_motor_map: 
+  fl_abd_joint: -1
+  fl_hip_joint: -1
+  fl_knee_joint: -1
+  fr_abd_joint: -1
+  fr_hip_joint: 1
+  fr_knee_joint: 1
+  bl_abd_joint: 1
+  bl_hip_joint: -1
+  bl_knee_joint: -1
+  br_abd_joint: 1
+  br_hip_joint: 1
+  br_knee_joint: 1 

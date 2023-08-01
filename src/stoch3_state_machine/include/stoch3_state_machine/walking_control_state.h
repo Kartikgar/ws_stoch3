@@ -47,7 +47,7 @@ class WalkingControlState : public State
       teleop_command.request.command = "WalkingControl";
       ros::service::call("/stoch3/teleop/command", teleop_command);
 
-      switch_high_level_controller.request.name = "walking_controller";
+      switch_high_level_controller.request.name = "inactive";
       ros::service::call("/stoch3/controller_supervisor/switch_controller", switch_high_level_controller);
 
 

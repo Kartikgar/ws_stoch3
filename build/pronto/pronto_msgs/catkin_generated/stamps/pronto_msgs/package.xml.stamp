@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pronto_msgs</name>
+  <version>0.3.0</version>
+
+  <description>
+	  The pronto_msgs package contains common message types used by the
+	  Pronto state estimator.
+  </description>
+
+  <maintainer email="mcamurri@robots.ox.ac.uk">Marco Camurri</maintainer>
+  <license>LGPLv2.1</license>
+
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

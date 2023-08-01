@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: pronto_utils
+Description: Description of pronto_utils
+Version: 0.3.0
+Cflags: -I/home/kartik/ws_stoch3/src/pronto/pronto_utils/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib -lpronto_utils -lkalman_filter -lbacklash_filter
+Requires: 

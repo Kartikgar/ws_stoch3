@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: anymal_b_simple_description
+Description: Description of anymal_b_simple_description
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

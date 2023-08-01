@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: pronto_core
+Description: Description of pronto_core
+Version: 0.3.0
+Cflags: -I/home/kartik/ws_stoch3/src/pronto/pronto_core/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib -lpronto_core
+Requires: 

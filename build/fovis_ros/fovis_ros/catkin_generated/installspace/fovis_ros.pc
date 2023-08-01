@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: fovis_ros
+Description: Description of fovis_ros
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lfovision
+Requires: cv_bridge fovis image_transport tf_conversions eigen_conversions fovis_msgs

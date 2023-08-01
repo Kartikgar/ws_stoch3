@@ -68,18 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -92,16 +80,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -112,6 +90,29 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -124,16 +125,15 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : test/fast
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,34 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule
+stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+.PHONY : stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-set_model_configuration_node: stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule
+gazebo_msgs_generate_messages_py: stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
 
-.PHONY : set_model_configuration_node
+.PHONY : gazebo_msgs_generate_messages_py
 
 # fast build rule for target.
-set_model_configuration_node/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/build.make stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/build
-.PHONY : set_model_configuration_node/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule
-
-# Convenience name for target.
-gazebo_ros_gencfg: stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule
-
-.PHONY : gazebo_ros_gencfg
-
-# fast build rule for target.
-gazebo_ros_gencfg/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build.make stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build
-.PHONY : gazebo_ros_gencfg/fast
+gazebo_msgs_generate_messages_py/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
+.PHONY : gazebo_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule:
@@ -213,21 +198,6 @@ gazebo_msgs_generate_messages_eus/fast:
 .PHONY : gazebo_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-stoch3_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_cpp: stoch3_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/rule
-
-.PHONY : bond_generate_messages_cpp
-
-# fast build rule for target.
-bond_generate_messages_cpp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/build.make stoch3_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/build
-.PHONY : bond_generate_messages_cpp/fast
-
-# Convenience name for target.
 stoch3_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/rule:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/rule
 .PHONY : stoch3_gazebo/CMakeFiles/gazebo_plugins_gencfg.dir/rule
@@ -243,19 +213,64 @@ gazebo_plugins_gencfg/fast:
 .PHONY : gazebo_plugins_gencfg/fast
 
 # Convenience name for target.
-stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule
+stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule
+.PHONY : stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule
 
 # Convenience name for target.
-stoch3_robot_hw_sim: stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule
+stoch3_gazebo_xacro_generated_to_devel_space_: stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule
 
-.PHONY : stoch3_robot_hw_sim
+.PHONY : stoch3_gazebo_xacro_generated_to_devel_space_
 
 # fast build rule for target.
-stoch3_robot_hw_sim/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/build.make stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/build
-.PHONY : stoch3_robot_hw_sim/fast
+stoch3_gazebo_xacro_generated_to_devel_space_/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/build.make stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/build
+.PHONY : stoch3_gazebo_xacro_generated_to_devel_space_/fast
+
+# Convenience name for target.
+stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+.PHONY : stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_cpp: stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_cpp
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_cpp/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
+.PHONY : gazebo_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule
+.PHONY : stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule
+
+# Convenience name for target.
+gazebo_ros_gencfg: stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule
+
+.PHONY : gazebo_ros_gencfg
+
+# fast build rule for target.
+gazebo_ros_gencfg/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build.make stoch3_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build
+.PHONY : gazebo_ros_gencfg/fast
+
+# Convenience name for target.
+stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule
+.PHONY : stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule
+
+# Convenience name for target.
+set_model_configuration_node: stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/rule
+
+.PHONY : set_model_configuration_node
+
+# fast build rule for target.
+set_model_configuration_node/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/build.make stoch3_gazebo/CMakeFiles/set_model_configuration_node.dir/build
+.PHONY : set_model_configuration_node/fast
 
 # Convenience name for target.
 stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule:
@@ -288,184 +303,19 @@ gazebo_msgs_generate_messages_nodejs/fast:
 .PHONY : gazebo_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-stoch3_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/rule
+stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule
+.PHONY : stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule
 
 # Convenience name for target.
-nodelet_generate_messages_eus: stoch3_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/rule
+stoch3_robot_hw_sim: stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/rule
 
-.PHONY : nodelet_generate_messages_eus
+.PHONY : stoch3_robot_hw_sim
 
 # fast build rule for target.
-nodelet_generate_messages_eus/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/build.make stoch3_gazebo/CMakeFiles/nodelet_generate_messages_eus.dir/build
-.PHONY : nodelet_generate_messages_eus/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_cpp: stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_cpp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_cpp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
-.PHONY : gazebo_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-nodelet_generate_messages_cpp: stoch3_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/rule
-
-.PHONY : nodelet_generate_messages_cpp
-
-# fast build rule for target.
-nodelet_generate_messages_cpp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/build.make stoch3_gazebo/CMakeFiles/nodelet_generate_messages_cpp.dir/build
-.PHONY : nodelet_generate_messages_cpp/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_py: stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_py
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_py/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make stoch3_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
-.PHONY : gazebo_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-nodelet_generate_messages_nodejs: stoch3_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
-
-.PHONY : nodelet_generate_messages_nodejs
-
-# fast build rule for target.
-nodelet_generate_messages_nodejs/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/build.make stoch3_gazebo/CMakeFiles/nodelet_generate_messages_nodejs.dir/build
-.PHONY : nodelet_generate_messages_nodejs/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-nodelet_generate_messages_lisp: stoch3_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
-
-.PHONY : nodelet_generate_messages_lisp
-
-# fast build rule for target.
-nodelet_generate_messages_lisp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/build.make stoch3_gazebo/CMakeFiles/nodelet_generate_messages_lisp.dir/build
-.PHONY : nodelet_generate_messages_lisp/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/bond_generate_messages_eus.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/bond_generate_messages_eus.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/bond_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_eus: stoch3_gazebo/CMakeFiles/bond_generate_messages_eus.dir/rule
-
-.PHONY : bond_generate_messages_eus
-
-# fast build rule for target.
-bond_generate_messages_eus/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/bond_generate_messages_eus.dir/build.make stoch3_gazebo/CMakeFiles/bond_generate_messages_eus.dir/build
-.PHONY : bond_generate_messages_eus/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/bond_generate_messages_py.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/bond_generate_messages_py.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/bond_generate_messages_py.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_py: stoch3_gazebo/CMakeFiles/bond_generate_messages_py.dir/rule
-
-.PHONY : bond_generate_messages_py
-
-# fast build rule for target.
-bond_generate_messages_py/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/bond_generate_messages_py.dir/build.make stoch3_gazebo/CMakeFiles/bond_generate_messages_py.dir/build
-.PHONY : bond_generate_messages_py/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule
-
-# Convenience name for target.
-stoch3_gazebo_xacro_generated_to_devel_space_: stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/rule
-
-.PHONY : stoch3_gazebo_xacro_generated_to_devel_space_
-
-# fast build rule for target.
-stoch3_gazebo_xacro_generated_to_devel_space_/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/build.make stoch3_gazebo/CMakeFiles/stoch3_gazebo_xacro_generated_to_devel_space_.dir/build
-.PHONY : stoch3_gazebo_xacro_generated_to_devel_space_/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_lisp: stoch3_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/rule
-
-.PHONY : bond_generate_messages_lisp
-
-# fast build rule for target.
-bond_generate_messages_lisp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/build.make stoch3_gazebo/CMakeFiles/bond_generate_messages_lisp.dir/build
-.PHONY : bond_generate_messages_lisp/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/rule
-
-# Convenience name for target.
-nodelet_generate_messages_py: stoch3_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/rule
-
-.PHONY : nodelet_generate_messages_py
-
-# fast build rule for target.
-nodelet_generate_messages_py/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/build.make stoch3_gazebo/CMakeFiles/nodelet_generate_messages_py.dir/build
-.PHONY : nodelet_generate_messages_py/fast
-
-# Convenience name for target.
-stoch3_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 stoch3_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/rule
-.PHONY : stoch3_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_nodejs: stoch3_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/rule
-
-.PHONY : bond_generate_messages_nodejs
-
-# fast build rule for target.
-bond_generate_messages_nodejs/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/build.make stoch3_gazebo/CMakeFiles/bond_generate_messages_nodejs.dir/build
-.PHONY : bond_generate_messages_nodejs/fast
+stoch3_robot_hw_sim/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/build.make stoch3_gazebo/CMakeFiles/stoch3_robot_hw_sim.dir/build
+.PHONY : stoch3_robot_hw_sim/fast
 
 src/set_model_configuration_node.o: src/set_model_configuration_node.cpp.o
 
@@ -528,32 +378,22 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install/local"
+	@echo "... gazebo_msgs_generate_messages_py"
 	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... set_model_configuration_node"
-	@echo "... gazebo_ros_gencfg"
 	@echo "... gazebo_msgs_generate_messages_eus"
-	@echo "... bond_generate_messages_cpp"
 	@echo "... gazebo_plugins_gencfg"
-	@echo "... stoch3_robot_hw_sim"
+	@echo "... stoch3_gazebo_xacro_generated_to_devel_space_"
+	@echo "... rebuild_cache"
+	@echo "... gazebo_msgs_generate_messages_cpp"
+	@echo "... gazebo_ros_gencfg"
+	@echo "... set_model_configuration_node"
 	@echo "... gazebo_msgs_generate_messages_lisp"
 	@echo "... gazebo_msgs_generate_messages_nodejs"
-	@echo "... nodelet_generate_messages_eus"
-	@echo "... gazebo_msgs_generate_messages_cpp"
-	@echo "... nodelet_generate_messages_cpp"
-	@echo "... gazebo_msgs_generate_messages_py"
-	@echo "... nodelet_generate_messages_nodejs"
-	@echo "... nodelet_generate_messages_lisp"
-	@echo "... bond_generate_messages_eus"
-	@echo "... bond_generate_messages_py"
-	@echo "... stoch3_gazebo_xacro_generated_to_devel_space_"
-	@echo "... bond_generate_messages_lisp"
-	@echo "... nodelet_generate_messages_py"
-	@echo "... bond_generate_messages_nodejs"
+	@echo "... stoch3_robot_hw_sim"
+	@echo "... test"
+	@echo "... install/local"
+	@echo "... edit_cache"
+	@echo "... list_install_components"
 	@echo "... src/set_model_configuration_node.o"
 	@echo "... src/set_model_configuration_node.i"
 	@echo "... src/set_model_configuration_node.s"

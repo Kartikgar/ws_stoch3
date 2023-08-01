@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: pronto_anymal_b
+Description: Description of pronto_anymal_b
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

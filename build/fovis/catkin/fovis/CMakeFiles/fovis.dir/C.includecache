@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kartik/ws_stoch3/src/fovis/libfovis/libfovis/gauss_pyramid.c
+gauss_pyramid.h
+/home/kartik/ws_stoch3/src/fovis/libfovis/libfovis/gauss_pyramid.h
+
+/home/kartik/ws_stoch3/src/fovis/libfovis/libfovis/gauss_pyramid.h
+stdint.h
+-
+

@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: pronto_quadruped_ros
+Description: Description of pronto_quadruped_ros
+Version: 0.3.0
+Cflags: -I/home/kartik/ws_stoch3/src/pronto/pronto_quadruped_ros/include
+Libs: -L${prefix}/lib -lpronto_quadruped_ros
+Requires: pronto_core pronto_quadruped geometry_msgs sensor_msgs pronto_msgs visualization_msgs eigen_conversions

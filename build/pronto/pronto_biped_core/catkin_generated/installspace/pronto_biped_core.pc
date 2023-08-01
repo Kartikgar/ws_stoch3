@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: pronto_biped_core
+Description: Description of pronto_biped_core
+Version: 0.3.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lpronto_biped_legodo
+Requires: pronto_utils pronto_core

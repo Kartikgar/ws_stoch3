@@ -1,1 +1,1 @@
-/usr/bin/c++    -rdynamic CMakeFiles/exampleLP.dir/examples/exampleLP.cpp.o  -o /home/kartik/ws_stoch3/devel/lib/qpoases/exampleLP -Wl,-rpath,/home/kartik/ws_stoch3/devel/lib: /home/kartik/ws_stoch3/devel/lib/libqpoases.so 
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/exampleLP.dir/examples/exampleLP.cpp.o  -o /home/kartik/ws_stoch3/devel/lib/qpoases/exampleLP -Wl,-rpath,/home/kartik/ws_stoch3/devel/lib: /home/kartik/ws_stoch3/devel/lib/libqpoases.so 

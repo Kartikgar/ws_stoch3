@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: pronto_quadruped_commons
+Description: Description of pronto_quadruped_commons
+Version: 0.3.0
+Cflags: -I${prefix}/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib 
+Requires: 

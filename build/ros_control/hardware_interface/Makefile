@@ -90,6 +90,17 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -111,17 +122,6 @@ test:
 test/fast: test
 
 .PHONY : test/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -183,64 +183,19 @@ _run_tests_hardware_interface_gtest_posvelacc_command_interface_test/fast:
 .PHONY : _run_tests_hardware_interface_gtest_posvelacc_command_interface_test/fast
 
 # Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule
 
 # Convenience name for target.
-_run_tests_hardware_interface_gtest_posvel_command_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+joint_state_interface_test: ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule
 
-.PHONY : _run_tests_hardware_interface_gtest_posvel_command_interface_test
+.PHONY : joint_state_interface_test
 
 # fast build rule for target.
-_run_tests_hardware_interface_gtest_posvel_command_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build
-.PHONY : _run_tests_hardware_interface_gtest_posvel_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule
-
-# Convenience name for target.
-posvel_command_interface_test: ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule
-
-.PHONY : posvel_command_interface_test
-
-# fast build rule for target.
-posvel_command_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/build
-.PHONY : posvel_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
-
-# Convenience name for target.
-run_tests_hardware_interface_gtest_interface_manager_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
-
-.PHONY : run_tests_hardware_interface_gtest_interface_manager_test
-
-# fast build rule for target.
-run_tests_hardware_interface_gtest_interface_manager_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/build
-.PHONY : run_tests_hardware_interface_gtest_interface_manager_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule
-
-# Convenience name for target.
-interface_manager_test: ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule
-
-.PHONY : interface_manager_test
-
-# fast build rule for target.
-interface_manager_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/build
-.PHONY : interface_manager_test/fast
+joint_state_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/build
+.PHONY : joint_state_interface_test/fast
 
 # Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_robot_hw_test.dir/rule:
@@ -258,94 +213,19 @@ run_tests_hardware_interface_gtest_robot_hw_test/fast:
 .PHONY : run_tests_hardware_interface_gtest_robot_hw_test/fast
 
 # Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule
+ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule
 
 # Convenience name for target.
-robot_hw_test: ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule
+actuator_command_interface_test: ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule
 
-.PHONY : robot_hw_test
+.PHONY : actuator_command_interface_test
 
 # fast build rule for target.
-robot_hw_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/build.make ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/build
-.PHONY : robot_hw_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule
-
-# Convenience name for target.
-run_tests_hardware_interface_gtest: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule
-
-.PHONY : run_tests_hardware_interface_gtest
-
-# fast build rule for target.
-run_tests_hardware_interface_gtest/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/build
-.PHONY : run_tests_hardware_interface_gtest/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule
-
-# Convenience name for target.
-_run_tests_hardware_interface_gtest_joint_command_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule
-
-.PHONY : _run_tests_hardware_interface_gtest_joint_command_interface_test
-
-# fast build rule for target.
-_run_tests_hardware_interface_gtest_joint_command_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/build
-.PHONY : _run_tests_hardware_interface_gtest_joint_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+actuator_command_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/build
+.PHONY : actuator_command_interface_test/fast
 
 # Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest.dir/rule:
@@ -363,169 +243,19 @@ _run_tests_hardware_interface_gtest/fast:
 .PHONY : _run_tests_hardware_interface_gtest/fast
 
 # Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_cpp: ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+_run_tests_hardware_interface_gtest_actuator_state_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
 
-.PHONY : roscpp_generate_messages_cpp
+.PHONY : _run_tests_hardware_interface_gtest_actuator_state_interface_test
 
 # fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule
-
-# Convenience name for target.
-actuator_command_interface_test: ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/rule
-
-.PHONY : actuator_command_interface_test
-
-# fast build rule for target.
-actuator_command_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/actuator_command_interface_test.dir/build
-.PHONY : actuator_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
-
-# Convenience name for target.
-_run_tests_hardware_interface_gtest_interface_manager_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
-
-.PHONY : _run_tests_hardware_interface_gtest_interface_manager_test
-
-# fast build rule for target.
-_run_tests_hardware_interface_gtest_interface_manager_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/build
-.PHONY : _run_tests_hardware_interface_gtest_interface_manager_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule
-
-# Convenience name for target.
-_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule
-
-.PHONY : _run_tests_hardware_interface_gtest_force_torque_sensor_interface_test
-
-# fast build rule for target.
-_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/build
-.PHONY : _run_tests_hardware_interface_gtest_force_torque_sensor_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule
-
-# Convenience name for target.
-imu_sensor_interface_test: ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule
-
-.PHONY : imu_sensor_interface_test
-
-# fast build rule for target.
-imu_sensor_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/build
-.PHONY : imu_sensor_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
-
-# Convenience name for target.
-run_tests_hardware_interface_gtest_imu_sensor_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
-
-.PHONY : run_tests_hardware_interface_gtest_imu_sensor_interface_test
-
-# fast build rule for target.
-run_tests_hardware_interface_gtest_imu_sensor_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/build
-.PHONY : run_tests_hardware_interface_gtest_imu_sensor_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
-
-# Convenience name for target.
-run_tests_hardware_interface_gtest_hardware_resource_manager_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
-
-.PHONY : run_tests_hardware_interface_gtest_hardware_resource_manager_test
-
-# fast build rule for target.
-run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build
-.PHONY : run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule
-
-# Convenience name for target.
-joint_command_interface_test: ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule
-
-.PHONY : joint_command_interface_test
-
-# fast build rule for target.
-joint_command_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/build
-.PHONY : joint_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule
-
-# Convenience name for target.
-joint_state_interface_test: ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/rule
-
-.PHONY : joint_state_interface_test
-
-# fast build rule for target.
-joint_state_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/joint_state_interface_test.dir/build
-.PHONY : joint_state_interface_test/fast
+_run_tests_hardware_interface_gtest_actuator_state_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build
+.PHONY : _run_tests_hardware_interface_gtest_actuator_state_interface_test/fast
 
 # Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/clean_test_results_hardware_interface.dir/rule:
@@ -541,6 +271,21 @@ clean_test_results_hardware_interface: ros_control/hardware_interface/CMakeFiles
 clean_test_results_hardware_interface/fast:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/clean_test_results_hardware_interface.dir/build.make ros_control/hardware_interface/CMakeFiles/clean_test_results_hardware_interface.dir/build
 .PHONY : clean_test_results_hardware_interface/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
+
+# Convenience name for target.
+_run_tests_hardware_interface_gtest_hardware_resource_manager_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
+
+.PHONY : _run_tests_hardware_interface_gtest_hardware_resource_manager_test
+
+# fast build rule for target.
+_run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build
+.PHONY : _run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast
 
 # Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface.dir/rule:
@@ -588,126 +333,6 @@ run_tests_hardware_interface/fast:
 .PHONY : run_tests_hardware_interface/fast
 
 # Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_py.dir/build.make ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
-
-# Convenience name for target.
-_run_tests_hardware_interface_gtest_hardware_resource_manager_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
-
-.PHONY : _run_tests_hardware_interface_gtest_hardware_resource_manager_test
-
-# fast build rule for target.
-_run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build
-.PHONY : _run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule
-
-# Convenience name for target.
-posvelacc_command_interface_test: ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule
-
-.PHONY : posvelacc_command_interface_test
-
-# fast build rule for target.
-posvelacc_command_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/build
-.PHONY : posvelacc_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_eus.dir/build.make ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make ros_control/hardware_interface/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule
-
-# Convenience name for target.
-actuator_state_interface_test: ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule
-
-.PHONY : actuator_state_interface_test
-
-# fast build rule for target.
-actuator_state_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/build
-.PHONY : actuator_state_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
-
-# Convenience name for target.
-run_tests_hardware_interface_gtest_actuator_state_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
-
-.PHONY : run_tests_hardware_interface_gtest_actuator_state_interface_test
-
-# fast build rule for target.
-run_tests_hardware_interface_gtest_actuator_state_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build
-.PHONY : run_tests_hardware_interface_gtest_actuator_state_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
-
-# Convenience name for target.
-_run_tests_hardware_interface_gtest_actuator_state_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
-
-.PHONY : _run_tests_hardware_interface_gtest_actuator_state_interface_test
-
-# fast build rule for target.
-_run_tests_hardware_interface_gtest_actuator_state_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build
-.PHONY : _run_tests_hardware_interface_gtest_actuator_state_interface_test/fast
-
-# Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvelacc_command_interface_test.dir/rule:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvelacc_command_interface_test.dir/rule
 .PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvelacc_command_interface_test.dir/rule
@@ -723,21 +348,6 @@ run_tests_hardware_interface_gtest_posvelacc_command_interface_test/fast:
 .PHONY : run_tests_hardware_interface_gtest_posvelacc_command_interface_test/fast
 
 # Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ros_control/hardware_interface/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_command_interface_test.dir/rule:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_command_interface_test.dir/rule
 .PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_command_interface_test.dir/rule
@@ -751,51 +361,6 @@ run_tests_hardware_interface_gtest_actuator_command_interface_test: ros_control/
 run_tests_hardware_interface_gtest_actuator_command_interface_test/fast:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_command_interface_test.dir/build
 .PHONY : run_tests_hardware_interface_gtest_actuator_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
-
-# Convenience name for target.
-run_tests_hardware_interface_gtest_posvel_command_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
-
-.PHONY : run_tests_hardware_interface_gtest_posvel_command_interface_test
-
-# fast build rule for target.
-run_tests_hardware_interface_gtest_posvel_command_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build
-.PHONY : run_tests_hardware_interface_gtest_posvel_command_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
-
-# Convenience name for target.
-run_tests_hardware_interface_gtest_joint_state_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
-
-.PHONY : run_tests_hardware_interface_gtest_joint_state_interface_test
-
-# fast build rule for target.
-run_tests_hardware_interface_gtest_joint_state_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build
-.PHONY : run_tests_hardware_interface_gtest_joint_state_interface_test/fast
-
-# Convenience name for target.
-ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
-.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
-
-# Convenience name for target.
-_run_tests_hardware_interface_gtest_joint_state_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
-
-.PHONY : _run_tests_hardware_interface_gtest_joint_state_interface_test
-
-# fast build rule for target.
-_run_tests_hardware_interface_gtest_joint_state_interface_test/fast:
-	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build
-.PHONY : _run_tests_hardware_interface_gtest_joint_state_interface_test/fast
 
 # Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_robot_hw_test.dir/rule:
@@ -843,6 +408,156 @@ _run_tests_hardware_interface_gtest_actuator_command_interface_test/fast:
 .PHONY : _run_tests_hardware_interface_gtest_actuator_command_interface_test/fast
 
 # Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
+
+# Convenience name for target.
+run_tests_hardware_interface_gtest_hardware_resource_manager_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/rule
+
+.PHONY : run_tests_hardware_interface_gtest_hardware_resource_manager_test
+
+# fast build rule for target.
+run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_hardware_resource_manager_test.dir/build
+.PHONY : run_tests_hardware_interface_gtest_hardware_resource_manager_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule
+
+# Convenience name for target.
+joint_command_interface_test: ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/rule
+
+.PHONY : joint_command_interface_test
+
+# fast build rule for target.
+joint_command_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/joint_command_interface_test.dir/build
+.PHONY : joint_command_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+
+# Convenience name for target.
+run_tests_hardware_interface_gtest_posvel_command_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+
+.PHONY : run_tests_hardware_interface_gtest_posvel_command_interface_test
+
+# fast build rule for target.
+run_tests_hardware_interface_gtest_posvel_command_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build
+.PHONY : run_tests_hardware_interface_gtest_posvel_command_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
+
+# Convenience name for target.
+_run_tests_hardware_interface_gtest_joint_state_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
+
+.PHONY : _run_tests_hardware_interface_gtest_joint_state_interface_test
+
+# fast build rule for target.
+_run_tests_hardware_interface_gtest_joint_state_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build
+.PHONY : _run_tests_hardware_interface_gtest_joint_state_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
+
+# Convenience name for target.
+run_tests_hardware_interface_gtest_joint_state_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/rule
+
+.PHONY : run_tests_hardware_interface_gtest_joint_state_interface_test
+
+# fast build rule for target.
+run_tests_hardware_interface_gtest_joint_state_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_joint_state_interface_test.dir/build
+.PHONY : run_tests_hardware_interface_gtest_joint_state_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule
+
+# Convenience name for target.
+interface_manager_test: ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/rule
+
+.PHONY : interface_manager_test
+
+# fast build rule for target.
+interface_manager_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/interface_manager_test.dir/build
+.PHONY : interface_manager_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
+
+# Convenience name for target.
+run_tests_hardware_interface_gtest_actuator_state_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/rule
+
+.PHONY : run_tests_hardware_interface_gtest_actuator_state_interface_test
+
+# fast build rule for target.
+run_tests_hardware_interface_gtest_actuator_state_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_actuator_state_interface_test.dir/build
+.PHONY : run_tests_hardware_interface_gtest_actuator_state_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule
+
+# Convenience name for target.
+run_tests_hardware_interface_gtest: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/rule
+
+.PHONY : run_tests_hardware_interface_gtest
+
+# fast build rule for target.
+run_tests_hardware_interface_gtest/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest.dir/build
+.PHONY : run_tests_hardware_interface_gtest/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule
+
+# Convenience name for target.
+_run_tests_hardware_interface_gtest_joint_command_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/rule
+
+.PHONY : _run_tests_hardware_interface_gtest_joint_command_interface_test
+
+# fast build rule for target.
+_run_tests_hardware_interface_gtest_joint_command_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_joint_command_interface_test.dir/build
+.PHONY : _run_tests_hardware_interface_gtest_joint_command_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule
+
+# Convenience name for target.
+posvel_command_interface_test: ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/rule
+
+.PHONY : posvel_command_interface_test
+
+# fast build rule for target.
+posvel_command_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/posvel_command_interface_test.dir/build
+.PHONY : posvel_command_interface_test/fast
+
+# Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/hardware_resource_manager_test.dir/rule:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/hardware_resource_manager_test.dir/rule
 .PHONY : ros_control/hardware_interface/CMakeFiles/hardware_resource_manager_test.dir/rule
@@ -873,6 +588,51 @@ run_tests_hardware_interface_gtest_force_torque_sensor_interface_test/fast:
 .PHONY : run_tests_hardware_interface_gtest_force_torque_sensor_interface_test/fast
 
 # Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule
+
+# Convenience name for target.
+imu_sensor_interface_test: ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/rule
+
+.PHONY : imu_sensor_interface_test
+
+# fast build rule for target.
+imu_sensor_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/imu_sensor_interface_test.dir/build
+.PHONY : imu_sensor_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
+
+# Convenience name for target.
+run_tests_hardware_interface_gtest_imu_sensor_interface_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
+
+.PHONY : run_tests_hardware_interface_gtest_imu_sensor_interface_test
+
+# fast build rule for target.
+run_tests_hardware_interface_gtest_imu_sensor_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/build
+.PHONY : run_tests_hardware_interface_gtest_imu_sensor_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+
+# Convenience name for target.
+_run_tests_hardware_interface_gtest_posvel_command_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/rule
+
+.PHONY : _run_tests_hardware_interface_gtest_posvel_command_interface_test
+
+# fast build rule for target.
+_run_tests_hardware_interface_gtest_posvel_command_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_posvel_command_interface_test.dir/build
+.PHONY : _run_tests_hardware_interface_gtest_posvel_command_interface_test/fast
+
+# Convenience name for target.
 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
 .PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/rule
@@ -886,6 +646,96 @@ _run_tests_hardware_interface_gtest_imu_sensor_interface_test: ros_control/hardw
 _run_tests_hardware_interface_gtest_imu_sensor_interface_test/fast:
 	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_imu_sensor_interface_test.dir/build
 .PHONY : _run_tests_hardware_interface_gtest_imu_sensor_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule
+
+# Convenience name for target.
+robot_hw_test: ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/rule
+
+.PHONY : robot_hw_test
+
+# fast build rule for target.
+robot_hw_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/build.make ros_control/hardware_interface/CMakeFiles/robot_hw_test.dir/build
+.PHONY : robot_hw_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
+
+# Convenience name for target.
+run_tests_hardware_interface_gtest_interface_manager_test: ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
+
+.PHONY : run_tests_hardware_interface_gtest_interface_manager_test
+
+# fast build rule for target.
+run_tests_hardware_interface_gtest_interface_manager_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/run_tests_hardware_interface_gtest_interface_manager_test.dir/build
+.PHONY : run_tests_hardware_interface_gtest_interface_manager_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule
+
+# Convenience name for target.
+_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/rule
+
+.PHONY : _run_tests_hardware_interface_gtest_force_torque_sensor_interface_test
+
+# fast build rule for target.
+_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_force_torque_sensor_interface_test.dir/build
+.PHONY : _run_tests_hardware_interface_gtest_force_torque_sensor_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
+
+# Convenience name for target.
+_run_tests_hardware_interface_gtest_interface_manager_test: ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/rule
+
+.PHONY : _run_tests_hardware_interface_gtest_interface_manager_test
+
+# fast build rule for target.
+_run_tests_hardware_interface_gtest_interface_manager_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/build.make ros_control/hardware_interface/CMakeFiles/_run_tests_hardware_interface_gtest_interface_manager_test.dir/build
+.PHONY : _run_tests_hardware_interface_gtest_interface_manager_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule
+
+# Convenience name for target.
+actuator_state_interface_test: ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/rule
+
+.PHONY : actuator_state_interface_test
+
+# fast build rule for target.
+actuator_state_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/actuator_state_interface_test.dir/build
+.PHONY : actuator_state_interface_test/fast
+
+# Convenience name for target.
+ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f CMakeFiles/Makefile2 ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule
+.PHONY : ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule
+
+# Convenience name for target.
+posvelacc_command_interface_test: ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/rule
+
+.PHONY : posvelacc_command_interface_test
+
+# fast build rule for target.
+posvelacc_command_interface_test/fast:
+	cd /home/kartik/ws_stoch3/build && $(MAKE) -f ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/build.make ros_control/hardware_interface/CMakeFiles/posvelacc_command_interface_test.dir/build
+.PHONY : posvelacc_command_interface_test/fast
 
 test/actuator_command_interface_test.o: test/actuator_command_interface_test.cpp.o
 
@@ -1193,58 +1043,48 @@ help:
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... _run_tests_hardware_interface_gtest_posvelacc_command_interface_test"
-	@echo "... _run_tests_hardware_interface_gtest_posvel_command_interface_test"
-	@echo "... posvel_command_interface_test"
-	@echo "... run_tests_hardware_interface_gtest_interface_manager_test"
-	@echo "... interface_manager_test"
-	@echo "... run_tests_hardware_interface_gtest_robot_hw_test"
-	@echo "... robot_hw_test"
-	@echo "... run_tests_hardware_interface_gtest"
-	@echo "... _run_tests_hardware_interface_gtest_joint_command_interface_test"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... _run_tests_hardware_interface_gtest"
-	@echo "... rebuild_cache"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... actuator_command_interface_test"
-	@echo "... _run_tests_hardware_interface_gtest_interface_manager_test"
-	@echo "... _run_tests_hardware_interface_gtest_force_torque_sensor_interface_test"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... imu_sensor_interface_test"
-	@echo "... run_tests_hardware_interface_gtest_imu_sensor_interface_test"
-	@echo "... run_tests_hardware_interface_gtest_hardware_resource_manager_test"
-	@echo "... joint_command_interface_test"
 	@echo "... joint_state_interface_test"
+	@echo "... run_tests_hardware_interface_gtest_robot_hw_test"
+	@echo "... actuator_command_interface_test"
+	@echo "... _run_tests_hardware_interface_gtest"
+	@echo "... _run_tests_hardware_interface_gtest_actuator_state_interface_test"
 	@echo "... install/strip"
 	@echo "... clean_test_results_hardware_interface"
+	@echo "... _run_tests_hardware_interface_gtest_hardware_resource_manager_test"
 	@echo "... _run_tests_hardware_interface"
 	@echo "... force_torque_sensor_interface_test"
 	@echo "... run_tests_hardware_interface"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... _run_tests_hardware_interface_gtest_hardware_resource_manager_test"
-	@echo "... posvelacc_command_interface_test"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... actuator_state_interface_test"
-	@echo "... run_tests_hardware_interface_gtest_actuator_state_interface_test"
-	@echo "... _run_tests_hardware_interface_gtest_actuator_state_interface_test"
 	@echo "... run_tests_hardware_interface_gtest_posvelacc_command_interface_test"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... run_tests_hardware_interface_gtest_actuator_command_interface_test"
-	@echo "... run_tests_hardware_interface_gtest_posvel_command_interface_test"
-	@echo "... run_tests_hardware_interface_gtest_joint_state_interface_test"
-	@echo "... _run_tests_hardware_interface_gtest_joint_state_interface_test"
 	@echo "... _run_tests_hardware_interface_gtest_robot_hw_test"
 	@echo "... run_tests_hardware_interface_gtest_joint_command_interface_test"
 	@echo "... _run_tests_hardware_interface_gtest_actuator_command_interface_test"
+	@echo "... run_tests_hardware_interface_gtest_hardware_resource_manager_test"
+	@echo "... joint_command_interface_test"
+	@echo "... run_tests_hardware_interface_gtest_posvel_command_interface_test"
+	@echo "... _run_tests_hardware_interface_gtest_joint_state_interface_test"
+	@echo "... run_tests_hardware_interface_gtest_joint_state_interface_test"
+	@echo "... interface_manager_test"
+	@echo "... run_tests_hardware_interface_gtest_actuator_state_interface_test"
+	@echo "... run_tests_hardware_interface_gtest"
+	@echo "... _run_tests_hardware_interface_gtest_joint_command_interface_test"
+	@echo "... posvel_command_interface_test"
 	@echo "... hardware_resource_manager_test"
 	@echo "... run_tests_hardware_interface_gtest_force_torque_sensor_interface_test"
+	@echo "... imu_sensor_interface_test"
+	@echo "... run_tests_hardware_interface_gtest_imu_sensor_interface_test"
+	@echo "... _run_tests_hardware_interface_gtest_posvel_command_interface_test"
 	@echo "... _run_tests_hardware_interface_gtest_imu_sensor_interface_test"
+	@echo "... robot_hw_test"
+	@echo "... run_tests_hardware_interface_gtest_interface_manager_test"
+	@echo "... _run_tests_hardware_interface_gtest_force_torque_sensor_interface_test"
+	@echo "... _run_tests_hardware_interface_gtest_interface_manager_test"
+	@echo "... actuator_state_interface_test"
+	@echo "... posvelacc_command_interface_test"
 	@echo "... test/actuator_command_interface_test.o"
 	@echo "... test/actuator_command_interface_test.i"
 	@echo "... test/actuator_command_interface_test.s"

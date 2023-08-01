@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: anymal_b_robcogen
+Description: Description of anymal_b_robcogen
+Version: 0.1.0
+Cflags: -I/home/kartik/ws_stoch3/src/pronto_anymal_example/anymal_b_robcogen/include -I/home/kartik/ws_stoch3/src/pronto_anymal_example/anymal_b_robcogen/include/anymal_b_robcogen -I/usr/include/eigen3
+Libs: -L${prefix}/lib -lanymal_b_robcogen
+Requires: 

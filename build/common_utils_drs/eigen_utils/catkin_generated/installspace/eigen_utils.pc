@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: eigen_utils
+Description: Description of eigen_utils
+Version: 1.0.0
+Cflags: -I${prefix}/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib -leigen_utils
+Requires: 

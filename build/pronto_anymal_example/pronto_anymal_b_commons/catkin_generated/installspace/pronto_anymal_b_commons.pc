@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: pronto_anymal_b_commons
+Description: Description of pronto_anymal_b_commons
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lpronto_anymal_b_commons
+Requires: pronto_quadruped_commons anymal_b_robcogen

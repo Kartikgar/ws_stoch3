@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: anymal_b_robcogen
+Description: Description of anymal_b_robcogen
+Version: 0.1.0
+Cflags: -I${prefix}/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib -lanymal_b_robcogen
+Requires: 

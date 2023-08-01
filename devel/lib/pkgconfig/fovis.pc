@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: fovis
+Description: Description of fovis
+Version: 1.0.0
+Cflags: -I/home/kartik/ws_stoch3/src/fovis/catkin/fovis/../../libfovis/libfovis -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+Libs: -L${prefix}/lib -lfovis
+Requires: 

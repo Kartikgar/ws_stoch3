@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/devel
+
+Name: stl_utils
+Description: Description of stl_utils
+Version: 1.0.0
+Cflags: -I/home/kartik/ws_stoch3/src/common_utils_drs/stl_utils/include
+Libs: -L${prefix}/lib 
+Requires: 

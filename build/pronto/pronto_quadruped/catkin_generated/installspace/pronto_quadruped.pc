@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: pronto_quadruped
+Description: Description of pronto_quadruped
+Version: 0.3.0
+Cflags: -I${prefix}/include -I/usr/include/eigen3 -I/usr/include
+Libs: -L${prefix}/lib -lpronto_quadruped /usr/lib/x86_64-linux-gnu/libboost_filesystem.so /usr/lib/x86_64-linux-gnu/libboost_system.so
+Requires: pronto_quadruped_commons pronto_utils

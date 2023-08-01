@@ -1,0 +1,8 @@
+prefix=/home/kartik/ws_stoch3/install
+
+Name: stoch3_cvx_mpc_libtraj
+Description: Description of stoch3_cvx_mpc_libtraj
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
